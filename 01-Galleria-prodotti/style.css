@@ -1,80 +1,91 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
-
-body{
-  font-family: 'Roboto', sans-serif;
-}
-.flex-container{
-  display:flex;
-  flex-flow:column wrap;
-  margin:0 auto;
-  max-width:1440px;
-}
-.product-list{
-  display: flex;
-  flex-flow: wrap;
-  justify-content: space-evenly;
-}
-.product-list__4-product article{
-    flex: 0 1 25%;
-}
-.product-list__3-product article{
-    flex: 0 1 33.333333333333336%;
-}
-.product-list__2-product article{
-    flex: 0 1 50%;
-}
-article{
-  text-align: center;
-  transition: all 700ms ease;
+body {
+	font-family: 'Roboto', sans-serif;
 }
 
+.flex-container {
+	display: flex;
+	flex-flow: column wrap;
+	margin: 0 auto;
+	max-width: 1440px;
+}
 
-article > div{
-  margin:10px;
-  border: 1px solid #e4e4e4;
-  padding: 10px;
-  box-shadow: 2px 2px 5px #0000000f;
+.product-list {
+	display: flex;
+	flex-flow: wrap;
+	justify-content: space-evenly;
 }
-article h2{
-  font-size:1em;
-  font-weight:400;
-  margin:0px;
+
+.product-list__4-product article {
+	flex: 0 1 25%;
 }
-article p{
-  font-size:.8em;
-  font-weight:200;
-  margin:0px;
+
+.product-list__3-product article {
+	flex: 0 1 33.333333333333336%;
 }
-article img{
-  width:100%; 
+
+.product-list__2-product article {
+	flex: 0 1 50%;
 }
-.order{
-    border-bottom:1px solid silver;
-  justify-content:flex-end;
-  display:inline-flex;
-  align-items:center;
-  min-height:50px;
-  padding:5px;
-  margin-bottom:10px;
+
+article {
+	text-align: center;
+	transition: all 700ms ease;
 }
-.order > span{
-  width:40px;
-  height:40px;
-  margin:5px;
-  cursor:pointer;
-  background:#fff;
-  display:block;
-  border:1px solid black;
-  display:flex;
-  justify-content:center;
-  font-weight:700;
-  font-size:30px;
+
+article>div {
+	margin: 10px;
+	border: 1px solid #e4e4e4;
+	padding: 10px;
+	box-shadow: 2px 2px 5px #0000000f;
 }
-.order > span:hover{
-  background:#000;
-  color:#fff;
+
+article h2 {
+	font-size: 1em;
+	font-weight: 400;
+	margin: 0px;
 }
-.order > span.select{
-    background:#000;
-  color:#fff;
+
+article p {
+	font-size: .8em;
+	font-weight: 200;
+	margin: 0px;
+}
+
+article img {
+	width: 100%;
+}
+
+.order {
+	border-bottom: 1px solid silver;
+	justify-content: flex-end;
+	display: inline-flex;
+	align-items: center;
+	min-height: 50px;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+.order>span {
+	width: 40px;
+	height: 40px;
+	margin: 5px;
+	cursor: pointer;
+	background: #fff;
+	display: block;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	font-weight: 700;
+	font-size: 30px;
+}
+
+.order>span:hover {
+	background: #000;
+	color: #fff;
+}
+
+.order>span.select {
+	background: #000;
+	color: #fff;
 }
