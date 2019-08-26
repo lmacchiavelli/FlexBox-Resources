@@ -1,0 +1,285 @@
+
+// Parametri di Configurazione
+
+  $base-color                 :  #c6538c                       ;
+  $menu-size                  :  72                            ; //px
+  $global-animation-speed     :  350ms                         ;
+  $global-animation-timing    :  cubic-bezier(.86, 0, .07, 1)  ;
+  $show-hamburger-menu-limit  :  768px                         ; //Tablet
+  $mobile-select-color        :  #2c2c2c                       ;
+  $desktop-select-color       :  #fff                          ;                                                              
+
+                                                                 //
+//------------------------------//
+
+// Calcolati non modificare
+// // //
+$base-size: ($menu-size/16)+rem;
+
+@mixin animset {
+  animation-duration: $global-animation-speed;
+  animation-timing-function:$global-animation-timing;
+  animation-fill-mode: forwards;
+}
+// // //
+
+/*## STRUTTURA ##*/
+
+
+nav {
+  background: #000;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  /*height:72px;*/
+  height: $base-size;
+  transition: all 350ms cubic-bezier(.77, 0, .18, 1) 0s;
+}
+
+nav ul {
+  display: flex;
+  padding: 0px;
+  margin: 0px 0px 0px auto;
+}
+
+nav ul>li {
+  display: flex;
+  position: relative;
+}
+
+nav ul>li a {
+  color: #bebebe;
+  font-size: 22px;
+  font-weight: 100;
+  display: block;
+  /*line-height: 72px;*/
+  line-height: $base-size;
+  padding: 0 16px;
+}
+
+
+/*## SELEZIONE ##*/
+
+nav li.select a {
+  color: #fff;
+}
+
+nav li:hover a {
+  color: #fff;
+}
+
+nav ul>li.select:after {
+  content: " ";
+  height: 7px;
+  background: $desktop-select-color ;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+}
+
+nav.close {
+  /*Così baserebbe per non usare calc*/
+  /*! overflow: visible; */
+  height: $base-size;
+  overflow: hidden;
+}
+
+#hamburger {
+  /* flex-basis: 72px;*/
+  flex-basis: $base-size;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  /*! min-height: $base-size; */
+  max-width: $base-size;
+}
+
+#hamburger>span {
+  /*! display: flex; */
+  height: 21px;
+  width: 25px;
+  position: relative;
+}
+
+#hamburger>span>span {
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  position: absolute;
+}
+
+#hamburger>span>span:nth-child(1) {
+  top: 0px;
+}
+
+#hamburger>span>span:nth-child(2) {
+  top: 9px;
+}
+
+#hamburger>span>span:nth-child(3) {
+  top: 18px;
+}
+
+
+/*## ANIMAZIONE ##*/
+
+nav li>a,
+nav ul>li:after {
+  transition: all 350ms cubic-bezier(.77, 0, .18, 1) 0s;
+}
+
+@keyframes line01_open {
+  0% {
+    top: 0px
+  }
+  100% {
+    top: 9px;
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes line01_close {
+  0% {
+    top: 9px;
+    transform: rotate(45deg);
+  }
+  100% {
+    top: 0px;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes line02_open {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes line02_close {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes line03_open {
+  0% {
+    top: 18px
+  }
+  100% {
+    top: 9px;
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes line03_close {
+  0% {
+    top: 9px;
+    transform: rotate(-45deg);
+  }
+  100% {
+    top: 18px;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes master_rotate_open {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-90deg);
+  }
+}
+
+nav.open #hamburger>span {
+  animation-name: master_rotate_open;
+  @include animset;
+}
+
+nav.open #hamburger>span>span:nth-child(1) {
+  animation-name: line01_open;
+ @include animset;
+}
+
+nav.open #hamburger>span>span:nth-child(2) {
+  animation-name: line02_open;
+  @include animset;
+}
+
+nav.open #hamburger>span>span:nth-child(3) {
+  animation-name: line03_open;
+ @include animset;
+}
+
+nav.close #hamburger>span>span:nth-child(1) {
+  animation-name: line01_close;
+ @include animset;
+}
+
+nav.close #hamburger>span>span:nth-child(2) {
+  animation-name: line02_close;
+@include animset;
+}
+
+nav.close #hamburger>span>span:nth-child(3) {
+  animation-name: line03_close;
+@include animset;
+}
+
+
+/*## RESPONSIVE ##*/
+
+@media (max-width:$show-hamburger-menu-limit) {
+  nav ul {
+    background: #000;
+    flex-direction: column;
+    flex: 100%;
+    width: 100%;
+    display: block;
+    float: left;
+    clear: left;
+  }
+  nav {
+    flex-direction: column;
+    overflow: hidden;
+  }
+  nav .select{
+    background: $mobile-select-color  ;
+  }
+  nav .select:after {
+    display: none
+  }
+  .open {
+    height: #{ "calc( " +  $base-size + "* 5 )" } ;
+  }
+  #hamburger {
+    display: flex;
+    min-height: $base-size;
+    max-width: $base-size;
+  }
+}
+
+
+/*## PAGINA ##*/
+
+html {
+  font-size: 100%;
+}
+
+body {
+  margin: 0px;
+  font-family: arial;
+  display: flex;
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+}
